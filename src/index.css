@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap");
+*{
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Prompt";
+  font-size: 1.3em;
+  font-weight: 600;
+}
+:root{
+  --font: 'Prompt';
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Prompt";
+}
+
+.swal2-container {
+  z-index: 20000;
+}
