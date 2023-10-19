@@ -25,6 +25,7 @@ export default function SaleAdd() {
 
     const [amn, setAmn] = useState()
     const [price, setPrice] = useState()
+    const [amount, setAmount] = useState()
     const [productID, setProductID] = useState()
     const [productName, setProductName] = useState()
     const [productUnit, setProductUnit] = useState()
@@ -107,7 +108,7 @@ export default function SaleAdd() {
     }
 
     async function sumPrice(params) {
-        const sum = await _.sumBy(listProduct, 'productPrice');
+        const sum = await _.sumBy(listProduct, 'amount');
         await setPriceAmn(sum)
         await console.log(sum);
     }
@@ -184,8 +185,9 @@ export default function SaleAdd() {
                 field="amn" 
                 width={150}
                 />
-                <Column header="หน่วย" field="productUnit" width={150} />
-                <Column header="ราคา" field="productPrice" width={150} />
+                <Column header="หน่วยนับ" field="productUnit" width={190} />
+                <Column header="ราคา" field="productPrice" width={150} cellAlignment='center' />
+                <Column header="จำนวนเงิน" field="amount" width={200} cellAlignment='center' />
                 <Column
                     width={30}
                     component={({ row }) => (
@@ -220,7 +222,7 @@ export default function SaleAdd() {
             </div>
          </div> 
          <div className='ModalBottom'>
-            <span>ราคารวม : {priceAmn}</span>
+            <span>จำนวนเงินรวม : {priceAmn}</span>
             <span>รับเงิน :</span>
             <Input
             style={{marginBottom: '5%'}}
@@ -273,7 +275,8 @@ export default function SaleAdd() {
                                 amn: 1,
                                 productUnit: 'ขวด',
                                 productUnitid: 1,
-                                productPrice: 65
+                                productPrice: 65,
+                                amount: 65
                             })
                             await sumPrice()
                             await setIsOpen(false)
@@ -315,7 +318,8 @@ export default function SaleAdd() {
                     amn: amn,
                     productUnit: productUnit,
                     productUnitid: 1,
-                    productPrice: (65 * amn)
+                    productPrice: price,
+                    amount: (65 * amn)
                 }
 
                 const newData = await [
