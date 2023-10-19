@@ -1,15 +1,23 @@
-import React,{useState, useEffect, useCallback} from 'react'
+import React,{useState, useEffect, useCallback, useRef} from 'react'
 import './disposit.sass'
-
+import Icon from '@mdi/react';
+import { NavLink } from 'react-router-dom';
 
 import { Input } from 'react-rainbow-components';
-import { Table, Column, ButtonGroup, ButtonIcon, Badge, MenuItem, Button } from 'react-rainbow-components';
+import { Table, 
+  Column, 
+  ButtonGroup, 
+  ButtonIcon, 
+  Badge, 
+  MenuItem, 
+  Button
+} from 'react-rainbow-components';
+import { mdiFileDocumentPlusOutline } from '@mdi/js';
+
 
 export default function Deposit() {
 
-    const [docno, setDocno] = useState('D20231018-001')
-    const [docdate, setDocdate] = useState('2023-10-19')
-
+    const AddRef = useRef();
 
     const inputStyles = {
         width: 300,
@@ -18,7 +26,14 @@ export default function Deposit() {
     const StatusBadge = ({ value }) => <Badge label={value} variant="lightest" style={badgeStyles} />;
   return (
     <div className='disposit'>
+    <NavLink ref={AddRef} to={'/disposit/add'}/>
       <h1>รับสินค้า</h1>
+      <Button onClick={()=>{
+        AddRef.current.click();
+      }} variant="brand" className="rainbow-m-around_medium">
+            รับสินค้า
+            <Icon path={mdiFileDocumentPlusOutline} size={1} />
+        </Button>
       <div className='table'>
       <Table 
         data={[{
